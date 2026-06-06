@@ -1764,27 +1764,34 @@
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    const fill = entry.target.querySelector('.bar-fill[data-width]');
-                    if (fill) {
-                        setTimeout(() => {
-                            fill.style.width = fill.dataset.width + '%';
-                        }, 200);
-                    }
-                }
-            });
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll('[data-reveal]').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.querySelectorAll('.bar-fill[data-width]').forEach(el => {
+        document.querySelectorAll('.bar-fill[data-width]').forEach(function(el) {
             el.style.width = '0%';
         });
+
+        function revealEl(el) {
+            el.classList.add('visible');
+            var fill = el.querySelector('.bar-fill[data-width]');
+            if (fill) {
+                setTimeout(function() {
+                    fill.style.width = fill.getAttribute('data-width') + '%';
+                }, 200);
+            }
+        }
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) { revealEl(entry.target); }
+                });
+            }, { threshold: 0.08 });
+            document.querySelectorAll('[data-reveal]').forEach(function(el) {
+                observer.observe(el);
+            });
+        } else {
+            document.querySelectorAll('[data-reveal]').forEach(function(el) {
+                revealEl(el);
+            });
+        }
     </script>
 </body>
 </html>
