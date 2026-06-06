@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial — @vitoriaalvesff</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== TOKENS ===== */
+        :root {
+            --bg: #FAF8F3;
+            --green: #C7D7A8;
+            --pink: #F7D0DA;
+            --blue: #CDE8EE;
+            --cream: #F0EBE1;
+            --black: #1F1F1F;
+            --white: #FFFFFF;
+            --border: rgba(31,31,31,0.09);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', Helvetica, sans-serif;
+            --r: 16px;
+            --r-pill: 50px;
+            --shadow: 0 2px 20px rgba(31,31,31,0.07);
+            --shadow-hover: 0 8px 32px rgba(31,31,31,0.13);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.65;
+            color: var(--black);
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        [data-reveal].visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            from { transform: translateY(0) rotate(0deg); }
+            to   { transform: translateY(-12px) rotate(6deg); }
+        }
+        @keyframes float2 {
+            from { transform: translateY(0) rotate(0deg); }
+            to   { transform: translateY(-8px) rotate(-5deg); }
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 48px);
+            max-width: 960px;
+            background: var(--white);
+            border-radius: var(--r-pill);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .header-nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .header-nav a:hover { opacity: 1; }
+
+        .header-cta {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.55rem 1.25rem;
+            border-radius: var(--r-pill);
+            text-decoration: none;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .header-cta:hover { opacity: 0.8; }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            padding: 160px 24px 100px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--blue);
+            color: var(--black);
+            padding: 0.4rem 1rem;
+            border-radius: var(--r-pill);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(52px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1.05;
+            color: var(--black);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title .highlight {
+            background: var(--pink);
+            padding: 0 8px 4px;
+            border-radius: 6px;
+            display: inline;
+        }
+
+        .hero-title .highlight-green {
+            background: var(--green);
+            padding: 0 8px 4px;
+            border-radius: 6px;
+            display: inline;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(31,31,31,0.6);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-badge {
+            background: var(--white);
+            border: 1px solid var(--border);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 0.5rem 1.1rem;
+            border-radius: var(--r-pill);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: var(--r-pill);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(31,31,31,0.18);
+        }
+
+        .sticker {
+            position: absolute;
+            font-size: 2.4rem;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
+        }
+        .s1 { top: 120px; right: 12%; animation: float 3.2s ease-in-out infinite alternate; }
+        .s2 { top: 180px; left: 8%; animation: float2 4s ease-in-out infinite alternate; }
+        .s3 { bottom: 80px; right: 8%; animation: float 3.8s ease-in-out 0.5s infinite alternate; }
+        .s4 { bottom: 60px; left: 14%; animation: float2 2.9s ease-in-out 1s infinite alternate; font-size: 1.8rem; }
+        .s5 { top: 50%; left: 4%; animation: float 4.5s ease-in-out 0.3s infinite alternate; font-size: 1.6rem; }
+        .s6 { top: 50%; right: 4%; animation: float2 3.5s ease-in-out 0.8s infinite alternate; font-size: 1.6rem; }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--green);
+            overflow: hidden;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(31,31,31,0.08);
+            border-bottom: 1px solid rgba(31,31,31,0.08);
+        }
+
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 18s linear infinite;
+        }
+
+        .marquee-item {
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0 2.5rem;
+            color: var(--black);
+            opacity: 0.75;
+        }
+
+        .marquee-dot { opacity: 0.4; }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SECTION ===== */
+        .section { padding: 80px 0; }
+
+        .section-inner {
+            background: var(--white);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--cream);
+            color: rgba(31,31,31,0.5);
+            padding: 0.35rem 0.9rem;
+            border-radius: var(--r-pill);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: rgba(31,31,31,0.55);
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+        }
+
+        .sub-title {
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--black);
+            margin: 2.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .sub-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ===== PERFIL ===== */
+        .perfil-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .perfil-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .perfil-info h2 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .perfil-meta {
+            font-size: 0.9rem;
+            color: rgba(31,31,31,0.55);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .stat-chip .num {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-chip .lbl {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(31,31,31,0.45);
+        }
+
+        /* ===== CARDS ===== */
+        .cards-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .cards-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 1.5rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-green  { background: #EDF5DF; }
+        .card-pink   { background: #FDF0F4; }
+        .card-blue   { background: #E7F5F9; }
+        .card-cream  { background: var(--cream); }
+
+        .card-title {
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(31,31,31,0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: rgba(31,31,31,0.75);
+            line-height: 1.7;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+        .card-list li {
+            font-size: 0.92rem;
+            color: rgba(31,31,31,0.75);
+            padding: 0.35rem 0;
+            border-bottom: 1px solid rgba(31,31,31,0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .card-list li:last-child { border-bottom: none; }
+        .card-list li::before {
+            content: '·';
+            font-weight: 700;
+            color: rgba(31,31,31,0.3);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ===== DIAGNÓSTICO ===== */
+        .diag-card {
+            border-radius: var(--r);
+            padding: 2rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .diag-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .diag-card-green  { background: #EDF5DF; }
+        .diag-card-yellow { background: #FDF6E3; }
+        .diag-card-pink   { background: #FDF0F4; }
+
+        .diag-title {
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(31,31,31,0.45);
+            margin-bottom: 1.25rem;
+        }
+
+        .diag-list {
+            list-style: none;
+            padding: 0;
+        }
+        .diag-list li {
+            font-size: 0.9rem;
+            color: rgba(31,31,31,0.75);
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(31,31,31,0.07);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .diag-list li:last-child { border-bottom: none; }
+        .diag-list li::before {
+            content: '–';
+            font-weight: 600;
+            color: rgba(31,31,31,0.25);
+            flex-shrink: 0;
+        }
+
+        /* ===== BARRAS ===== */
+        .bar-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .bar-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 1.5rem;
+        }
+
+        .bar-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .bar-card p {
+            font-size: 0.82rem;
+            color: rgba(31,31,31,0.5);
+            margin-bottom: 1rem;
+        }
+
+        .bar-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(31,31,31,0.55);
+            margin-bottom: 0.4rem;
+        }
+
+        .bar-track {
+            background: rgba(31,31,31,0.08);
+            height: 6px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--black);
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+
+        /* ===== CT CARDS ===== */
+        .ct-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .ct-card {
+            border-radius: var(--r);
+            padding: 1.5rem;
+        }
+        .ct-card:nth-child(1) { background: #EDF5DF; }
+        .ct-card:nth-child(2) { background: #E7F5F9; }
+        .ct-card:nth-child(3) { background: #FDF0F4; }
+
+        .ct-card h5 {
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(31,31,31,0.45);
+            margin-bottom: 0.6rem;
+        }
+
+        .ct-card p {
+            font-size: 0.9rem;
+            color: rgba(31,31,31,0.7);
+            line-height: 1.6;
+        }
+
+        /* ===== CALENDÁRIO ===== */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cal-card {
+            border-radius: var(--r);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .cal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .cal-card:nth-child(1) { background: #EDF5DF; }
+        .cal-card:nth-child(2) { background: #FDF0F4; }
+        .cal-card:nth-child(3) { background: #E7F5F9; }
+        .cal-card:nth-child(4) { background: var(--cream); }
+        .cal-card:nth-child(5) { background: #EDF5DF; }
+
+        .cal-day {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.4rem;
+        }
+
+        .cal-tipo {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(31,31,31,0.08);
+            color: rgba(31,31,31,0.55);
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--r-pill);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .cal-desc {
+            font-size: 0.82rem;
+            color: rgba(31,31,31,0.65);
+            line-height: 1.5;
+        }
+
+        /* ===== TEMAS ===== */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        /* ===== MERCADO ===== */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .market-card {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: var(--r);
+            padding: 1.75rem;
+            transition: transform 0.25s;
+        }
+        .market-card:hover { transform: translateY(-4px); }
+        .market-card:nth-child(1) { border-color: #C7D7A8; }
+        .market-card:nth-child(2) { border-color: #CDE8EE; }
+        .market-card:nth-child(3) { border-color: #F7D0DA; }
+
+        .market-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(31,31,31,0.45);
+            margin-bottom: 0.75rem;
+        }
+
+        .market-price {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .market-desc {
+            font-size: 0.88rem;
+            color: rgba(31,31,31,0.6);
+            line-height: 1.6;
+        }
+
+        /* ===== PLANOS ===== */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .plan-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .plan-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .plan-card.featured {
+            border-color: var(--pink);
+            border-width: 2px;
+            box-shadow: 0 4px 28px rgba(247,208,218,0.5);
+        }
+
+        .plan-card.featured-blue {
+            border-color: var(--blue);
+            border-width: 2px;
+            box-shadow: 0 4px 28px rgba(205,232,238,0.5);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green);
+            color: var(--black);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 1rem;
+            border-radius: var(--r-pill);
+            white-space: nowrap;
+        }
+
+        .plan-badge.blue { background: var(--blue); }
+
+        .plan-name {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-tagline {
+            font-size: 0.82rem;
+            color: rgba(31,31,31,0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-price {
+            font-family: var(--serif);
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--black);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-period {
+            font-size: 0.8rem;
+            color: rgba(31,31,31,0.45);
+            margin-bottom: 1.75rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+        }
+
+        .plan-features li {
+            font-size: 0.88rem;
+            color: rgba(31,31,31,0.7);
+            padding: 0.55rem 0;
+            border-bottom: 1px solid rgba(31,31,31,0.06);
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+        }
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features li::before {
+            content: '✓';
+            font-weight: 700;
+            color: #5A8F3C;
+            flex-shrink: 0;
+        }
+
+        .plan-btn {
+            display: block;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.85rem 1.5rem;
+            border-radius: var(--r-pill);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .plan-btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* ===== TABELA ===== */
+        .table-wrap {
+            border-radius: var(--r);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .compare-table thead tr {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .compare-table th {
+            padding: 1rem 1.25rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .compare-table tbody tr:nth-child(even) { background: var(--cream); }
+        .compare-table tbody tr:nth-child(odd)  { background: var(--white); }
+
+        .compare-table td {
+            padding: 0.85rem 1.25rem;
+            font-size: 0.88rem;
+            color: rgba(31,31,31,0.7);
+            border-bottom: 1px solid rgba(31,31,31,0.05);
+        }
+
+        .compare-table td:first-child {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: #FDF6E3;
+            border: 1px solid rgba(200,160,0,0.2);
+            border-radius: var(--r);
+            padding: 1.25rem 1.5rem;
+            font-size: 0.92rem;
+            color: rgba(31,31,31,0.7);
+            margin-top: 1.5rem;
+        }
+
+        .info-box strong { color: #8A6800; }
+
+        /* ===== PROPOSTA TIPO BANNER ===== */
+        .proposta-tipo-banner {
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ptb-green { background: #EDF5DF; border: 1.5px solid #C7D7A8; }
+        .ptb-blue  { background: #E7F5F9; border: 1.5px solid #CDE8EE; }
+
+        .proposta-tipo-banner h3 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .proposta-tipo-banner p {
+            font-size: 0.9rem;
+            color: rgba(31,31,31,0.6);
+        }
+
+        .ptb-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(31,31,31,0.08);
+            color: rgba(31,31,31,0.5);
+            padding: 0.35rem 0.9rem;
+            border-radius: var(--r-pill);
+            white-space: nowrap;
+        }
+
+        /* ===== STEPS ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .step-card {
+            border-radius: var(--r);
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s;
+        }
+        .step-card:hover { transform: translateY(-4px); }
+        .step-card:nth-child(1) { background: #EDF5DF; }
+        .step-card:nth-child(2) { background: #E7F5F9; }
+        .step-card:nth-child(3) { background: #FDF0F4; }
+        .step-card:nth-child(4) { background: var(--cream); }
+
+        .step-num {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: var(--serif);
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(31,31,31,0.07);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .step-card h4 {
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card p {
+            font-size: 0.87rem;
+            color: rgba(31,31,31,0.65);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== CTA BOX ===== */
+        .cta-box {
+            background: var(--black);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-box h3 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-box p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.4rem;
+        }
+
+        .cta-box .validity {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: var(--black);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            margin-top: 4rem;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .site-footer strong { color: var(--white); }
+
+        .site-footer p {
+            font-size: 0.85rem;
+            margin: 0.3rem 0;
+        }
+
+        .footer-divider {
+            margin: 1rem auto;
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ===== DIVISOR DE SEÇÃO ===== */
+        .section-divider {
+            text-align: center;
+            padding: 1rem 0 2rem;
+            font-family: var(--serif);
+            font-size: 0.85rem;
+            color: rgba(31,31,31,0.3);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .header-nav { display: none; }
+            .cards-2, .cards-3, .market-grid, .plans-grid, .steps-grid { grid-template-columns: 1fr; }
+            .ct-row, .calendar-grid, .themes-grid { grid-template-columns: 1fr 1fr; }
+            .bar-group { grid-template-columns: 1fr; }
+            .perfil-grid { grid-template-columns: 1fr; text-align: center; }
+            .stats-row { justify-content: center; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 140px 16px 80px; }
+            .hero-title { font-size: 44px; }
+            .section-inner { padding: 2rem 1.25rem; }
+            .ct-row, .calendar-grid, .themes-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr 1fr; }
+            .cta-box { padding: 2rem 1.25rem; }
+            .proposta-tipo-banner { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <a href="#" class="header-logo">✦ Proposta</a>
+        <nav class="header-nav">
+            <a href="#analise">Análise</a>
+            <a href="#diagnostico">Diagnóstico</a>
+            <a href="#conteudo">Conteúdo</a>
+            <a href="#investimento">Investimento</a>
+        </nav>
+        <a href="#passos" class="header-cta">Próximos passos →</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <span class="sticker s1">✨</span>
+        <span class="sticker s2">📱</span>
+        <span class="sticker s3">⭐</span>
+        <span class="sticker s4">💬</span>
+        <span class="sticker s5">🎯</span>
+        <span class="sticker s6">🗓️</span>
+
+        <div class="hero-eyebrow">Proposta de Gestão de Conteúdo</div>
+
+        <h1 class="hero-title">
+            Crescimento<br>
+            <span class="highlight">estratégico</span> para<br>
+            <span class="highlight-green">@vitoriaalvesff</span>
+        </h1>
+
+        <p class="hero-subtitle">Uma estratégia profissional construída para levar seu perfil cristão aos 10 mil seguidores e além.</p>
+
+        <div class="hero-badges">
+            <span class="hero-badge">📱 Instagram</span>
+            <span class="hero-badge">🖼️ Gestão de Conteúdo</span>
+            <span class="hero-badge">📖 Conteúdo Cristão &amp; Missões</span>
+            <span class="hero-badge">🎯 Meta: 10K seguidores</span>
+        </div>
+
+        <a href="#investimento" class="hero-btn">Ver planos e preços</a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item">Gestão de Conteúdo</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Crescimento Digital</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Missões &amp; Fé</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Estratégia Editorial</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Comunidade Cristã</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Design + Estratégia</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Gestão de Conteúdo</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Crescimento Digital</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Missões &amp; Fé</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Estratégia Editorial</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Comunidade Cristã</span><span class="marquee-item marquee-dot">·</span>
+            <span class="marquee-item">Design + Estratégia</span><span class="marquee-item marquee-dot">·</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- PERFIL -->
+        <section class="section" id="perfil">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">O perfil</span>
+                <div class="perfil-grid">
+                    <img
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%23C7D7A8'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='72'%3E%F0%9F%91%A9%3C/text%3E%3C/svg%3E"
+                        alt="Vitória Freitas"
+                        class="perfil-avatar"
+                    >
+                    <div class="perfil-info">
+                        <h2>@vitoriaalvesff</h2>
+                        <div class="perfil-meta">
+                            <strong>Nome:</strong> Vitória Freitas<br>
+                            <strong>Nicho:</strong> Conteúdo Cristão, Evangelho e Missões<br>
+                            <strong>Objetivo:</strong> Alcançar 10.000 seguidores
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-chip">
+                                <span class="num">77</span>
+                                <span class="lbl">Posts</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="num">5,2K</span>
+                                <span class="lbl">Seguidores</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="num">1,6K</span>
+                                <span class="lbl">Seguindo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANÁLISE -->
+        <section class="section" id="analise">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">Análise do perfil</span>
+                <h2 class="section-title">Diagnóstico completo</h2>
+                <p class="section-subtitle">Uma leitura honesta do seu posicionamento atual, pontos fortes e onde há espaço para crescer.</p>
+
+                <p class="sub-title">Bio e Identidade Visual</p>
+                <div class="cards-2">
+                    <div class="card card-blue" data-reveal>
+                        <div class="card-title">Bio Atual</div>
+                        <p class="card-body">"🥹 me ajude a alcançar os 10k? ❤️ SEGUE AÍ ❤️ 📖 apaixonada por Jesus e missões"<br><br><strong>Link:</strong> youtube.com/@docemissao</p>
+                    </div>
+                    <div class="card card-green" data-reveal>
+                        <div class="card-title">Foto de Perfil</div>
+                        <p class="card-body">Foto pessoal bem iluminada, sorridente e profissional. Transmite confiabilidade e proximidade com a comunidade.</p>
+                    </div>
+                </div>
+
+                <p class="sub-title">Destaques do Perfil</p>
+                <div class="cards-3">
+                    <div class="card card-pink" data-reveal>
+                        <div class="card-title">🎭 10k</div>
+                        <p class="card-body">Objetivo principal. Mantém visibilidade e cria engajamento em torno da meta de crescimento.</p>
+                    </div>
+                    <div class="card card-green" data-reveal>
+                        <div class="card-title">🌍❤️ Missões</div>
+                        <p class="card-body">Foca em missões e projetos sociais. Diferencial importante para construir autoridade no nicho.</p>
+                    </div>
+                    <div class="card card-blue" data-reveal>
+                        <div class="card-title">À ELE 🫶</div>
+                        <p class="card-body">Conteúdo pessoal e relacional. Humaniza a marca e cria conexão emocional com os seguidores.</p>
+                    </div>
+                </div>
+
+                <p class="sub-title">Análise do Feed</p>
+                <div class="cards-2">
+                    <div class="card" data-reveal>
+                        <div class="card-title">💬 Formatos usados</div>
+                        <ul class="card-list">
+                            <li>Reels — 90% do conteúdo</li>
+                            <li>Posts estáticos — 10%</li>
+                            <li>Carrosseis ocasionais</li>
+                        </ul>
+                    </div>
+                    <div class="card" data-reveal>
+                        <div class="card-title">📊 Categorias</div>
+                        <ul class="card-list">
+                            <li>Evangelho e Reflexões — 70%</li>
+                            <li>Bastidores / Pessoal — 15%</li>
+                            <li>Moda e Lifestyle — 10%</li>
+                            <li>Conteúdo Motivacional — 5%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="sub-title">Posicionamento e Tom</p>
+                <div class="card" data-reveal>
+                    <div class="card-title">🎯 Posicionamento</div>
+                    <p class="card-body"><strong>Jovem criadora de conteúdo cristão</strong> que une fé, educação espiritual e autenticidade. Posiciona-se como influenciadora acessível e relatable, com mensagens evangélicas e tom leve e humorístico.</p>
+                    <ul class="card-list" style="margin-top:1rem">
+                        <li>Leve e descontraído — usa muito humor</li>
+                        <li>Autêntico e pessoal</li>
+                        <li>Inspirador e motivacional</li>
+                        <li>Acessível — não religioso demais</li>
+                        <li>Engajador — CTAs frequentes</li>
+                    </ul>
+                </div>
+
+                <p class="sub-title">Público-Alvo</p>
+                <div class="card card-cream" data-reveal>
+                    <ul class="card-list">
+                        <li><strong>Idade:</strong> 16–35 anos</li>
+                        <li><strong>Gênero:</strong> Principalmente feminino (~70%)</li>
+                        <li><strong>Interesse:</strong> Fé cristã, evangelho, lifestyle cristão, missões</li>
+                        <li><strong>Características:</strong> Jovens cristãos engajados, em busca de comunidade e inspiração</li>
+                        <li><strong>Comportamento:</strong> Ativo nas redes, busca identidade religiosa e pessoal</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIAGNÓSTICO ESTRATÉGICO -->
+        <section class="section" id="diagnostico">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">Diagnóstico estratégico</span>
+                <h2 class="section-title">Pontos fortes, fracos e oportunidades</h2>
+                <p class="section-subtitle">Uma análise estruturada para nortear as decisões de conteúdo.</p>
+
+                <div class="cards-3" style="margin-top: 1.5rem;">
+                    <div class="diag-card diag-card-green" data-reveal>
+                        <div class="diag-title">✓ Pontos Fortes</div>
+                        <ul class="diag-list">
+                            <li>Nicho bem definido</li>
+                            <li>Conteúdo autêntico e relatable</li>
+                            <li>Bom uso de humor</li>
+                            <li>Foto de perfil profissional</li>
+                            <li>Bio clara com objetivo explícito</li>
+                            <li>Destaques bem organizados</li>
+                            <li>CTA consistente</li>
+                            <li>Link de redirecionamento ativo</li>
+                        </ul>
+                    </div>
+                    <div class="diag-card diag-card-yellow" data-reveal>
+                        <div class="diag-title">⚠ Pontos Fracos</div>
+                        <ul class="diag-list">
+                            <li>Foco exclusivo em reels</li>
+                            <li>Apenas 77 posts no histórico</li>
+                            <li>Inconsistência na frequência</li>
+                            <li>Hashtags não otimizadas</li>
+                            <li>Legendas curtas demais</li>
+                            <li>Sem estratégia editorial clara</li>
+                            <li>Pouco aproveitamento de stories</li>
+                            <li>Sem educação via DM</li>
+                        </ul>
+                    </div>
+                    <div class="diag-card diag-card-pink" data-reveal>
+                        <div class="diag-title">🎯 Oportunidades</div>
+                        <ul class="diag-list">
+                            <li>5 posts estáticos por semana</li>
+                            <li>Estratégia de conteúdo semanal</li>
+                            <li>Autoridade com conteúdo educativo</li>
+                            <li>CTAs de conversão eficientes</li>
+                            <li>Série de conteúdo recorrente</li>
+                            <li>Parcerias com marcas cristãs</li>
+                            <li>Afiliados e produtos digitais</li>
+                            <li>Crescimento exponencial com plano</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="sub-title">Recomendações práticas</p>
+                <div class="bar-group">
+                    <div class="bar-card" data-reveal>
+                        <h4>Melhorar Frequência de Posts</h4>
+                        <p>Situação atual: 77 posts no histórico (inconsistente). Recomendação: 5 posts estáticos + reels com frequência regular.</p>
+                        <div class="bar-label">Impacto esperado no alcance: +200%</div>
+                        <div class="bar-track"><div class="bar-fill" data-width="75"></div></div>
+                    </div>
+                    <div class="bar-card" data-reveal>
+                        <h4>Otimização de Legendas</h4>
+                        <p>Situação atual: legendas muito curtas. Recomendação: legendas estruturadas + hashtags estratégicas.</p>
+                        <div class="bar-label">Impacto esperado no engajamento: +150%</div>
+                        <div class="bar-track"><div class="bar-fill" data-width="85"></div></div>
+                    </div>
+                </div>
+
+                <p class="sub-title">Oportunidades de crescimento</p>
+                <div class="ct-row">
+                    <div class="ct-card" data-reveal>
+                        <h5>Alcance</h5>
+                        <p>Posts estáticos regulares + reels aumentarão a visibilidade no algoritmo do Instagram.</p>
+                    </div>
+                    <div class="ct-card" data-reveal>
+                        <h5>Autoridade</h5>
+                        <p>Conteúdo educativo sobre fé, devocional e reflexões espirituais estruturadas.</p>
+                    </div>
+                    <div class="ct-card" data-reveal>
+                        <h5>Monetização</h5>
+                        <p>Afiliados, produtos digitais, cursos, consultoria ou serviços no nicho cristão.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANO DE CONTEÚDO -->
+        <section class="section" id="conteudo">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">Plano editorial</span>
+                <h2 class="section-title">5 Posts Estáticos por Semana</h2>
+                <p class="section-subtitle">Estratégia editorial estruturada para maximizar engajamento, construir autoridade e gerar conversões.</p>
+
+                <p class="sub-title">Distribuição semanal</p>
+                <div class="calendar-grid">
+                    <div class="cal-card" data-reveal>
+                        <div class="cal-day">Seg</div>
+                        <span class="cal-tipo">Autoridade</span>
+                        <div class="cal-desc">Posicionamento como referência no nicho</div>
+                    </div>
+                    <div class="cal-card" data-reveal>
+                        <div class="cal-day">Ter</div>
+                        <span class="cal-tipo">Educativo</span>
+                        <div class="cal-desc">Conteúdo de valor e aprendizado</div>
+                    </div>
+                    <div class="cal-card" data-reveal>
+                        <div class="cal-day">Qua</div>
+                        <span class="cal-tipo">Bastidores</span>
+                        <div class="cal-desc">Humanização e autenticidade</div>
+                    </div>
+                    <div class="cal-card" data-reveal>
+                        <div class="cal-day">Qui</div>
+                        <span class="cal-tipo">Prova Social</span>
+                        <div class="cal-desc">Testemunhos e comunidade</div>
+                    </div>
+                    <div class="cal-card" data-reveal>
+                        <div class="cal-day">Sex</div>
+                        <span class="cal-tipo">Oferta / CTA</span>
+                        <div class="cal-desc">Conversão e engajamento direto</div>
+                    </div>
+                </div>
+
+                <p class="sub-title">Temas por dia</p>
+                <div class="themes-grid">
+                    <div class="card card-green" data-reveal>
+                        <div class="card-title">Segunda — Autoridade</div>
+                        <ul class="card-list">
+                            <li>Reflexões bíblicas profundas</li>
+                            <li>Interpretação de versículos</li>
+                            <li>Liderança cristã</li>
+                            <li>Crescimento espiritual</li>
+                            <li>Análise de temas da fé</li>
+                        </ul>
+                    </div>
+                    <div class="card card-pink" data-reveal>
+                        <div class="card-title">Terça — Educativo</div>
+                        <ul class="card-list">
+                            <li>Dicas de vida cristã</li>
+                            <li>Rotina de devocional</li>
+                            <li>Valores cristãos na prática</li>
+                            <li>Guias de fé</li>
+                            <li>Questionário interativo</li>
+                        </ul>
+                    </div>
+                    <div class="card card-blue" data-reveal>
+                        <div class="card-title">Quarta — Bastidores</div>
+                        <ul class="card-list">
+                            <li>Dia a dia criando conteúdo</li>
+                            <li>Histórias pessoais</li>
+                            <li>Momentos de fé</li>
+                            <li>Dificuldades e aprendizados</li>
+                            <li>Relacionamento com Deus</li>
+                        </ul>
+                    </div>
+                    <div class="card" data-reveal>
+                        <div class="card-title">Quinta — Prova Social</div>
+                        <ul class="card-list">
+                            <li>Depoimentos de seguidores</li>
+                            <li>Histórias de transformação</li>
+                            <li>Respostas de DM impactantes</li>
+                            <li>Compartilhamento de comunidade</li>
+                            <li>Repostagens com reflexão</li>
+                        </ul>
+                    </div>
+                    <div class="card card-cream" data-reveal>
+                        <div class="card-title">Sexta — Oferta / CTA</div>
+                        <ul class="card-list">
+                            <li>Convite para seguir e compartilhar</li>
+                            <li>Divulgação do YouTube</li>
+                            <li>Chamada para missões</li>
+                            <li>Parcerias e produtos cristãos</li>
+                            <li>"Me conta nos comentários"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="sub-title">Estratégia de Legendas e Hashtags</p>
+                <div class="cards-2">
+                    <div class="card" data-reveal>
+                        <div class="card-title">✏️ Estrutura de Legenda</div>
+                        <ul class="card-list">
+                            <li><strong>Gancho:</strong> frase impactante na 1ª linha</li>
+                            <li><strong>Desenvolvimento:</strong> 3–5 linhas de valor</li>
+                            <li><strong>CTA:</strong> pergunta ou ação clara</li>
+                            <li><strong>Hashtags:</strong> 5–10 relevantes ao nicho</li>
+                        </ul>
+                    </div>
+                    <div class="card card-green" data-reveal>
+                        <div class="card-title">#️⃣ Hashtags Recomendadas</div>
+                        <ul class="card-list">
+                            <li>#cristã #vidacristã #evangelho</li>
+                            <li>#jesuscristo #fé #devocional</li>
+                            <li>#missões #docemissao #jovemcristão</li>
+                            <li>#bíblia #reflexãocristã #igrejajovem</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- INVESTIMENTO — PROPOSTA 1: SÓ DESIGN -->
+        <!-- ============================================================ -->
+        <section class="section" id="investimento">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">Investimento</span>
+                <h2 class="section-title">Escolha seu plano</h2>
+                <p class="section-subtitle">Três propostas diferentes para atender ao seu momento. Escolha a que faz mais sentido agora.</p>
+
+                <!-- BLOCO 1 — SÓ DESIGN -->
+                <div class="proposta-tipo-banner ptb-green" data-reveal>
+                    <div>
+                        <h3>🎨 Proposta 1 — Somente Design</h3>
+                        <p>Criação das artes prontas para você publicar. Sem gestão, sem estratégia — só os designs no seu estilo.</p>
+                    </div>
+                    <span class="ptb-tag">Opção mais acessível</span>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- DESIGN 8 -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Design · 8</div>
+                        <div class="plan-tagline">Para começar com presença visual</div>
+                        <div class="plan-price">R$ 280</div>
+                        <div class="plan-period">por mês · 8 artes/mês</div>
+                        <ul class="plan-features">
+                            <li>8 posts estáticos/mês</li>
+                            <li>Criação no Canva com identidade visual</li>
+                            <li>Paleta de cores e tipografia do perfil</li>
+                            <li>Formatos prontos para feed (1:1 e 4:5)</li>
+                            <li>2 revisões por arte</li>
+                            <li>Entrega em até 48h por lote</li>
+                            <li>Suporte via WhatsApp (dias úteis)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- DESIGN 12 -->
+                    <div class="plan-card featured" data-reveal>
+                        <div class="plan-badge">✦ Mais Popular</div>
+                        <div class="plan-name">Design · 12</div>
+                        <div class="plan-tagline">Para quem quer consistência visual</div>
+                        <div class="plan-price">R$ 420</div>
+                        <div class="plan-period">por mês · 12 artes/mês</div>
+                        <ul class="plan-features">
+                            <li>12 posts estáticos/mês</li>
+                            <li>Criação no Canva com identidade visual</li>
+                            <li>Paleta de cores e tipografia do perfil</li>
+                            <li>Formatos prontos para feed (1:1 e 4:5)</li>
+                            <li>3 revisões por arte</li>
+                            <li>Entrega em até 48h por lote</li>
+                            <li>Capa personalizada para destaques</li>
+                            <li>Suporte via WhatsApp (dias úteis)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- DESIGN 16 -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Design · 16</div>
+                        <div class="plan-tagline">Para feed sempre ativo e bonito</div>
+                        <div class="plan-price">R$ 560</div>
+                        <div class="plan-period">por mês · 16 artes/mês</div>
+                        <ul class="plan-features">
+                            <li>16 posts estáticos/mês</li>
+                            <li>Criação no Canva com identidade visual</li>
+                            <li>Paleta de cores e tipografia do perfil</li>
+                            <li>Formatos prontos para feed (1:1 e 4:5)</li>
+                            <li>Revisões ilimitadas</li>
+                            <li>Entrega em até 48h por lote</li>
+                            <li>Capa personalizada para destaques</li>
+                            <li>Template de stories incluído</li>
+                            <li>Suporte via WhatsApp (dias úteis)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+                </div>
+
+                <p class="sub-title">Comparativo — Somente Design</p>
+                <div class="table-wrap" data-reveal>
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Serviço</th>
+                                <th>Design 8 (R$280)</th>
+                                <th>Design 12 (R$420)</th>
+                                <th>Design 16 (R$560)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Posts estáticos/mês</td><td>8</td><td>12</td><td>16</td></tr>
+                            <tr><td>Identidade visual aplicada</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Revisões por arte</td><td>2</td><td>3</td><td>Ilimitadas</td></tr>
+                            <tr><td>Capas de destaques</td><td>—</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Template de stories</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Legendas / estratégia</td><td>—</td><td>—</td><td>—</td></tr>
+                            <tr><td>Suporte</td><td>Dias úteis</td><td>Dias úteis</td><td>Dias úteis</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- BLOCO 2 — DESIGN + ESTRATÉGIA -->
+                <!-- ============================================================ -->
+                <div class="proposta-tipo-banner ptb-blue" style="margin-top: 3.5rem;" data-reveal>
+                    <div>
+                        <h3>🚀 Proposta 2 — Design + Estratégia</h3>
+                        <p>Design profissional com planejamento editorial, legendas otimizadas e hashtags estratégicas. Tudo pronto para você publicar e crescer.</p>
+                    </div>
+                    <span class="ptb-tag">Melhor custo-benefício</span>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- DESIGN + ESTRATÉGIA 8 -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Essencial</div>
+                        <div class="plan-tagline">8 posts com planejamento completo</div>
+                        <div class="plan-price">R$ 400</div>
+                        <div class="plan-period">por mês · 8 posts/mês</div>
+                        <ul class="plan-features">
+                            <li>8 posts estáticos/mês</li>
+                            <li>Design no Canva com identidade visual</li>
+                            <li>Legenda estruturada + CTA para cada post</li>
+                            <li>Hashtags estratégicas por nicho</li>
+                            <li>Calendário editorial mensal</li>
+                            <li>Capa personalizada para destaques</li>
+                            <li>2 revisões por arte</li>
+                            <li>Relatório mensal básico</li>
+                            <li>Suporte via WhatsApp (dias úteis)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- DESIGN + ESTRATÉGIA 12 -->
+                    <div class="plan-card featured-blue" data-reveal>
+                        <div class="plan-badge blue">✦ Mais Popular</div>
+                        <div class="plan-name">Crescimento</div>
+                        <div class="plan-tagline">12 posts para acelerar de verdade</div>
+                        <div class="plan-price">R$ 600</div>
+                        <div class="plan-period">por mês · 12 posts/mês</div>
+                        <ul class="plan-features">
+                            <li>Tudo do plano Essencial</li>
+                            <li>12 posts estáticos/mês</li>
+                            <li>Análise de melhores horários de post</li>
+                            <li>Sugestão de pauta para reels</li>
+                            <li>Bio otimizada para conversão</li>
+                            <li>3 revisões por arte</li>
+                            <li>Reunião de alinhamento mensal</li>
+                            <li>Relatório detalhado de métricas</li>
+                            <li>Suporte via WhatsApp (7 dias)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- DESIGN + ESTRATÉGIA 16 -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-tagline">16 posts + gestão estratégica completa</div>
+                        <div class="plan-price">R$ 800</div>
+                        <div class="plan-period">por mês · 16 posts/mês</div>
+                        <ul class="plan-features">
+                            <li>Tudo do plano Crescimento</li>
+                            <li>16 posts estáticos/mês</li>
+                            <li>Template de stories estratégicos</li>
+                            <li>Análise de concorrência mensal</li>
+                            <li>Estratégia de parcerias no nicho cristão</li>
+                            <li>Revisões ilimitadas</li>
+                            <li>Mentoria estratégica quinzenal</li>
+                            <li>Relatório completo com insights</li>
+                            <li>Suporte prioritário 7 dias</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+                </div>
+
+                <p class="sub-title">Comparativo — Design + Estratégia</p>
+                <div class="table-wrap" data-reveal>
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Serviço</th>
+                                <th>Essencial (R$400)</th>
+                                <th>Crescimento (R$600)</th>
+                                <th>Premium (R$800)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Posts estáticos/mês</td><td>8</td><td>12</td><td>16</td></tr>
+                            <tr><td>Design com identidade visual</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Legendas + CTA</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Hashtags estratégicas</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Calendário editorial</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Bio otimizada</td><td>—</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Sugestão de pauta reels</td><td>—</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Template de stories</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Análise de concorrência</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Mentoria estratégica</td><td>—</td><td>—</td><td>Quinzenal</td></tr>
+                            <tr><td>Relatório mensal</td><td>Básico</td><td>Detalhado</td><td>Completo</td></tr>
+                            <tr><td>Revisões</td><td>2</td><td>3</td><td>Ilimitadas</td></tr>
+                            <tr><td>Suporte</td><td>Dias úteis</td><td>7 dias</td><td>7 dias</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- BLOCO 3 — GESTÃO COMPLETA (original) -->
+                <!-- ============================================================ -->
+                <div class="proposta-tipo-banner" style="margin-top: 3.5rem; background: #F5F0FF; border: 1.5px solid #D4C5F0;" data-reveal>
+                    <div>
+                        <h3>⚡ Proposta 3 — Gestão Completa</h3>
+                        <p>Gestão total do seu Instagram: design, estratégia, reels, stories, comentários e mentoria. Você foca no conteúdo, eu cuido de tudo.</p>
+                    </div>
+                    <span class="ptb-tag" style="background: rgba(100,60,200,0.08); color: rgba(31,31,31,0.5);">Solução completa</span>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- ESSENCIAL -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Essencial</div>
+                        <div class="plan-tagline">Para começar com estrutura</div>
+                        <div class="plan-price">R$ 497</div>
+                        <div class="plan-period">por mês</div>
+                        <ul class="plan-features">
+                            <li>5 posts estáticos/semana (20/mês)</li>
+                            <li>Criação de artes no Canva</li>
+                            <li>Legendas otimizadas com CTA</li>
+                            <li>Hashtags estratégicas</li>
+                            <li>Calendário editorial mensal</li>
+                            <li>Relatório mensal básico</li>
+                            <li>Suporte via WhatsApp (dias úteis)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- CRESCIMENTO -->
+                    <div class="plan-card featured" data-reveal>
+                        <div class="plan-badge">✦ Mais Popular</div>
+                        <div class="plan-name">Crescimento</div>
+                        <div class="plan-tagline">Para quem quer acelerar</div>
+                        <div class="plan-price">R$ 897</div>
+                        <div class="plan-period">por mês</div>
+                        <ul class="plan-features">
+                            <li>Tudo do Plano Essencial</li>
+                            <li>+ 4 Reels roteirizados/mês</li>
+                            <li>Stories estratégicos diários</li>
+                            <li>Identidade visual personalizada</li>
+                            <li>Bio otimizada</li>
+                            <li>Análise de concorrência mensal</li>
+                            <li>Reunião de alinhamento mensal</li>
+                            <li>Relatório detalhado de métricas</li>
+                            <li>Suporte prioritário (7 dias)</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+
+                    <!-- PREMIUM -->
+                    <div class="plan-card" data-reveal>
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-tagline">Gestão completa</div>
+                        <div class="plan-price">R$ 1.497</div>
+                        <div class="plan-period">por mês</div>
+                        <ul class="plan-features">
+                            <li>Tudo do Plano Crescimento</li>
+                            <li>+ 8 Reels roteirizados/mês</li>
+                            <li>Gestão de comentários</li>
+                            <li>Estratégia de parcerias e collabs</li>
+                            <li>Mentoria estratégica semanal</li>
+                            <li>Estratégia de monetização</li>
+                            <li>Criação de produtos digitais</li>
+                            <li>Análise de tráfego e SEO</li>
+                            <li>Suporte 24h via WhatsApp</li>
+                        </ul>
+                        <a href="#passos" class="plan-btn">Quero este plano</a>
+                    </div>
+                </div>
+
+                <p class="sub-title">Comparativo — Gestão Completa</p>
+                <div class="table-wrap" data-reveal>
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Serviço</th>
+                                <th>Essencial (R$497)</th>
+                                <th>Crescimento (R$897)</th>
+                                <th>Premium (R$1.497)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Posts estáticos/mês</td><td>20</td><td>20</td><td>20</td></tr>
+                            <tr><td>Reels roteirizados</td><td>—</td><td>4</td><td>8</td></tr>
+                            <tr><td>Stories estratégicos</td><td>—</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Identidade visual</td><td>—</td><td>✓</td><td>✓</td></tr>
+                            <tr><td>Gestão de comentários</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Mentoria semanal</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Estratégia de monetização</td><td>—</td><td>—</td><td>✓</td></tr>
+                            <tr><td>Relatório mensal</td><td>Básico</td><td>Detalhado</td><td>Completo</td></tr>
+                            <tr><td>Suporte</td><td>Dias úteis</td><td>7 dias</td><td>24h</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box" data-reveal>
+                    <strong>🎁 Bônus ao fechar até o fim da semana:</strong> 1 mês de acompanhamento gratuito de métricas + template de conteúdo cristão exclusivo para o perfil.
+                </div>
+            </div>
+        </section>
+
+        <!-- PRÓXIMOS PASSOS -->
+        <section class="section" id="passos">
+            <div class="section-inner" data-reveal>
+                <span class="section-label">Próximos passos</span>
+                <h2 class="section-title">Como começamos?</h2>
+                <p class="section-subtitle">Processo simples e rápido para dar o primeiro passo juntas.</p>
+
+                <div class="steps-grid">
+                    <div class="step-card" data-reveal>
+                        <div class="step-num">1</div>
+                        <h4>Aprovação</h4>
+                        <p>Analisamos juntas a proposta e escolhemos o plano ideal para o seu momento atual.</p>
+                    </div>
+                    <div class="step-card" data-reveal>
+                        <div class="step-num">2</div>
+                        <h4>Onboarding</h4>
+                        <p>Reunião de alinhamento para entender sua voz, estética e objetivos em detalhes.</p>
+                    </div>
+                    <div class="step-card" data-reveal>
+                        <div class="step-num">3</div>
+                        <h4>Planejamento</h4>
+                        <p>Criação do calendário editorial do primeiro mês com temas, artes e legendas.</p>
+                    </div>
+                    <div class="step-card" data-reveal>
+                        <div class="step-num">4</div>
+                        <h4>Execução</h4>
+                        <p>Início das publicações, monitoramento de métricas e otimização contínua.</p>
+                    </div>
+                </div>
+
+                <div class="cta-box" data-reveal>
+                    <h3>Vamos crescer juntas? 🌱</h3>
+                    <p>Entre em contato para fechar a parceria</p>
+                    <p>WhatsApp · Instagram DM · E-mail</p>
+                    <p class="validity">Proposta válida por 7 dias · Vagas limitadas</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p><strong>Proposta Comercial — Gestão de Conteúdo Digital</strong></p>
+        <div class="footer-divider"></div>
+        <p>Elaborada para <strong>@vitoriaalvesff</strong> · Vitória Freitas</p>
+        <p style="margin-top: 0.75rem; color: rgba(255,255,255,0.25); font-size: 0.75rem;">Documento confidencial · Junho 2026</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const fill = entry.target.querySelector('.bar-fill[data-width]');
+                    if (fill) {
+                        setTimeout(() => {
+                            fill.style.width = fill.dataset.width + '%';
+                        }, 200);
+                    }
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.bar-fill[data-width]').forEach(el => {
+            el.style.width = '0%';
+        });
+    </script>
+</body>
+</html>
